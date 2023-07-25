@@ -16,13 +16,13 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "16"
-          cache: "yarn"
+          cache: "pnpm"
 
       - name: Install packages
-        run: yarn install
+        run: pnpm install
 
       - name: Build docs
-        run: yarn build:docs
+        run: pnpm build:docs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
