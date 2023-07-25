@@ -165,6 +165,12 @@ export const wrapperPropsTable: ComponentProps = {
     description:
       "We can provide custom transform function to provide different way of handling our transform logic. If we need performance we can import getMatrixTransformStyles functions and replace default one. WARNING: default transform prevents svg blur on the safari.",
   },
+  smooth: {
+    type: ["boolean"],
+    defaultValue: String(initialSetup.smooth),
+    description:
+      "Enable smooth scrolling by multiplying the scroll delta with the smooth step factor.",
+  },
   wheel: {
     wheel: {
       type: [""],
@@ -175,6 +181,12 @@ export const wrapperPropsTable: ComponentProps = {
       type: ["number"],
       defaultValue: String(initialSetup.wheel.step),
       description: "The sensitivity of zooming with the wheel/touchpad.",
+    },
+    smoothStep: {
+      type: ["number"],
+      defaultValue: String(initialSetup.wheel.smoothStep),
+      description:
+        "The sensitivity multiplier of zooming with the wheel/touchpad used, instead of the step value, when smooth scrolling is enabled.",
     },
     disabled: {
       type: ["boolean"],
@@ -225,16 +237,16 @@ export const wrapperPropsTable: ComponentProps = {
         "Disable the panning velocity feature. It's triggered when you release the mouse button so the content is still moving after it and slowing down with calculated time.",
     },
     lockAxisX: {
-      type: ["string[]"],
-      defaultValue: String(initialSetup.panning.activationKeys),
+      type: ["boolean"],
+      defaultValue: String(initialSetup.panning.lockAxisX),
       description:
-        "List of keys which, when held down, should activate this feature.",
+        "Disable the panning feature for the X axis (prevents horizontal panning).",
     },
     lockAxisY: {
-      type: ["string[]"],
-      defaultValue: String(initialSetup.panning.activationKeys),
+      type: ["boolean"],
+      defaultValue: String(initialSetup.panning.lockAxisY),
       description:
-        "List of keys which, when held down, should activate this feature.",
+        "Disable the panning feature for the Y axis (prevents vertical panning).",
     },
     activationKeys: {
       type: ["string[]"],
@@ -326,7 +338,7 @@ export const wrapperPropsTable: ComponentProps = {
     },
     size: {
       type: ["number"],
-      defaultValue: String(initialSetup.zoomAnimation.disabled),
+      defaultValue: String(initialSetup.zoomAnimation.size),
       description:
         "Thanks to size, we can control the zoom out values larger than that controlled by the value of another 'minScale' prop. This results in an animated return of the value to the minimum scale when the zooming has finished. This works for both touchpad zooming and pinching.",
     },

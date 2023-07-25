@@ -44,9 +44,10 @@ export const handleWheelZoom = (
     zoomAnimation,
     wheel,
     disablePadding,
+    smooth,
   } = setup;
   const { size, disabled } = zoomAnimation;
-  const { step } = wheel;
+  const { step, smoothStep } = wheel;
 
   if (!contentComponent) {
     throw new Error("Component not mounted");
@@ -56,10 +57,11 @@ export const handleWheelZoom = (
   event.stopPropagation();
 
   const delta = getDelta(event, null);
+  const zoomStep = smooth ? smoothStep * Math.abs(event.deltaY) : step;
   const newScale = handleCalculateWheelZoom(
     contextInstance,
     delta,
-    step,
+    zoomStep,
     !event.ctrlKey,
   );
 
