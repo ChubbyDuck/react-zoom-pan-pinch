@@ -206,7 +206,11 @@ export class ZoomPanPinch {
     if (!isAllowed) return;
 
     const keysPressed = this.isPressingKeys(this.setup.panning.activationKeys);
-    if (!keysPressed) return;
+    const buttonsPressed = this.isPressingButtons(
+      this.setup.panning.activationButtons,
+      event,
+    );
+    if (!keysPressed || !buttonsPressed) return;
 
     event.preventDefault();
     event.stopPropagation();
@@ -392,6 +396,13 @@ export class ZoomPanPinch {
       return true;
     }
     return Boolean(keys.find((key) => this.pressedKeys[key]));
+  };
+
+  isPressingButtons = (buttons: number[], event: MouseEvent): boolean => {
+    if (!buttons.length) {
+      return true;
+    }
+    return Boolean(buttons.find((button) => event.buttons === Number(button)));
   };
 
   setTransformState = (

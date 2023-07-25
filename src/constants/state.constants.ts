@@ -33,6 +33,7 @@ export const initialSetup: LibrarySetup = {
     lockAxisX: false,
     lockAxisY: false,
     activationKeys: [],
+    activationButtons: [],
     excluded: [],
   },
   pinch: {

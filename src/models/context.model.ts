@@ -80,6 +80,7 @@ export type ReactZoomPanPinchProps = {
     lockAxisX?: boolean;
     lockAxisY?: boolean;
     activationKeys?: string[];
+    activationButtons?: number[];
     excluded?: string[];
   };
   pinch?: {
